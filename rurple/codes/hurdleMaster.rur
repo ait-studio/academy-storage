@@ -1,0 +1,24 @@
+def jump():
+    turn_left()
+    move()
+    repeat(turn_left, 3)
+    move()
+    repeat(turn_left, 3)
+    move()
+    turn_left()
+    
+def check_and_move():
+    if front_is_clear():
+        move()
+    else :
+        jump()
+
+def greedy_hurdler():
+    if next_to_a_beeper():
+        pick_beeper()
+        check_and_move()
+    else :
+        check_and_move()
+
+repeat(greedy_hurdler, 14)
+turn_off()
