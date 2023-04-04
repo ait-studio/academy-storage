@@ -1,0 +1,51 @@
+def turn_right():
+    repeat(turn_left, 3)
+
+def step():
+    turn_right()
+    move()
+    turn_left()
+    move()
+
+move()
+turn_left()
+repeat(move, 2)
+
+if front_is_clear():
+    repeat(move, 3)
+    repeat(step, 3)
+    turn_right()
+    move()
+    turn_right()
+    repeat(move, 3)
+    turn_left()
+    repeat(move, 2)
+    turn_right()
+    move()
+    turn_left()
+    move()
+    turn_left()
+else:
+    step()
+    turn_right()
+    repeat(move, 6)
+    turn_left()
+    move()
+
+move()
+turn_right()
+move()
+turn_left()
+repeat(move, 3)
+turn_left()
+move()
+turn_left()
+repeat(move, 2)
+turn_right()
+repeat(move, 2)
+turn_right()
+repeat(move, 3)
+turn_right()
+repeat(move, 3)
+
+turn_off()
