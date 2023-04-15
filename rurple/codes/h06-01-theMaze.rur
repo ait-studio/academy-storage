@@ -1,51 +1,55 @@
+next_to_a_carrot = next_to_a_beeper
+plant_carrot = put_beeper
+pick_carrot = pick_beeper
+
 def turn_right():
     repeat(turn_left, 3)
 
-def step():
+def level():
+    if not next_to_a_carrot():
+        plant_carrot()
+        if front_is_clear():
+            move()
+    else:
+        pick_carrot()
+        if not next_to_a_carrot():
+            plant_carrot()
+        if front_is_clear():
+            move()
+
+def up_left():
+    turn_left()
+    move()
+    turn_left()
+
+def up_right():
     turn_right()
     move()
-    turn_left()
-    move()
+    turn_right()
 
-move()
-turn_left()
 repeat(move, 2)
+repeat(level, 8)
+up_left()
 
-if front_is_clear():
-    repeat(move, 3)
-    repeat(step, 3)
-    turn_right()
-    move()
-    turn_right()
-    repeat(move, 3)
-    turn_left()
-    repeat(move, 2)
-    turn_right()
-    move()
-    turn_left()
-    move()
-    turn_left()
-else:
-    step()
-    turn_right()
-    repeat(move, 6)
-    turn_left()
-    move()
+repeat(level, 8)
+up_right()
+
+repeat(level, 8)
+up_left()
+
+repeat(level, 8)
+up_right()
+
+repeat(level, 8)
+up_left()
+
+repeat(level, 8)
+up_right()
+
+repeat(level, 8)
+up_left()
+
+repeat(level, 8)
 
 move()
-turn_right()
-move()
-turn_left()
-repeat(move, 3)
-turn_left()
-move()
-turn_left()
-repeat(move, 2)
-turn_right()
-repeat(move, 2)
-turn_right()
-repeat(move, 3)
-turn_right()
-repeat(move, 3)
-
 turn_off()

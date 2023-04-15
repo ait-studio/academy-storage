@@ -1,0 +1,47 @@
+def one_beeper_only():
+    while next_to_a_beeper():
+        pick_beeper()
+    put_beeper()
+
+def go_and_pick():
+    while front_is_clear():
+        one_beeper_only()
+        move()
+    one_beeper_only()
+
+def up_left():
+    turn_left()
+    move()
+    turn_left()
+
+def up_right():
+    repeat(turn_left, 3)
+    move()
+    repeat(turn_left, 3)
+
+move()
+move()
+
+go_and_pick()
+up_left()
+
+go_and_pick()
+up_right()
+
+go_and_pick()
+up_left()
+
+go_and_pick()
+up_right()
+
+go_and_pick()
+up_left()
+
+go_and_pick()
+up_right()
+
+go_and_pick()
+up_left()
+
+go_and_pick()
+turn_off()
