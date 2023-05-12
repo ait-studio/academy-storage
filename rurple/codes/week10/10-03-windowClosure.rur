@@ -1,0 +1,16 @@
+wall = 0
+
+def closeWindow():
+    if right_is_clear():
+        put_beeper()
+
+
+while wall < 4:
+    closeWindow()
+    if front_is_clear():
+        move()
+    else:
+        turn_left()
+        wall = wall + 1
+
+turn_off()

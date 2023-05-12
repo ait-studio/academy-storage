@@ -1,0 +1,11 @@
+def beeperLeveling():
+    while next_to_a_beeper():
+        pick_beeper()
+    put_beeper()
+
+while front_is_clear():
+    beeperLeveling()
+    move()
+beeperLeveling()
+
+turn_off()

@@ -1,0 +1,8 @@
+xPosition = 1
+endOfMap = 13
+
+while xPosition < endOfMap :
+    move()
+    xPosition = xPosition + 1
+
+turn_off()

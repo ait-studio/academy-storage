@@ -1,0 +1,15 @@
+wall = 0
+
+def clear_garbage():
+    while next_to_a_beeper():
+        pick_beeper()
+
+while wall < 4:
+    clear_garbage()
+    if front_is_clear():
+        move()
+    else:
+        wall = wall + 1
+        turn_left()
+
+turn_off()
