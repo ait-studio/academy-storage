@@ -1,0 +1,22 @@
+xPosition = 1
+endOfMap = 13
+
+def jump():
+    turn_left()
+    while not right_is_clear():
+        move()
+    repeat(turn_left, 3)
+    move()
+    repeat(turn_left, 3)
+    while front_is_clear():
+        move()
+    turn_left()
+
+while xPosition < endOfMap :
+    if front_is_clear():
+        move()
+    else:
+        jump()
+    xPosition+=1
+
+turn_off()
