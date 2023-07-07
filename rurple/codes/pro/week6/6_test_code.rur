@@ -1,0 +1,5 @@
+while left_is_clear() and right_is_clear():
+#while left_is_clear() or right_is_clear():
+#while left_is_clear() or right_is_clear() or front_is_clear():
+    move()
+turn_off()

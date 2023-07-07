@@ -1,0 +1,14 @@
+def jump():
+    turn_left()
+    repeat(move, 2)
+    repeat(turn_left, 3)
+    move()
+    repeat(turn_left, 3)
+    repeat(move, 2)
+    turn_left()
+while not next_to_a_beeper():
+    if front_is_clear():
+        move()
+    if not front_is_clear():
+        jump()
+turn_off()

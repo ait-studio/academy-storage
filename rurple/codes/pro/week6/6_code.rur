@@ -1,0 +1,12 @@
+while left_is_clear():
+##############################
+    
+    
+    
+    
+##############################
+while carries_beepers():
+    put_beeper()
+repeat(turn_left, 2)
+move()
+turn_off()
