@@ -1,0 +1,10 @@
+for i in [9,8,7,6,5,4,3,2,1]:
+    for j in range(i):
+        move()
+        repeat(put_beeper, 10-i)
+    repeat(turn_left, 2)
+    repeat(move, i-1)
+    repeat(turn_left, 3)
+    move()
+    repeat(turn_left, 3)
+turn_off()
