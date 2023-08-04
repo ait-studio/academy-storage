@@ -1,0 +1,36 @@
+a = 0
+b = 0
+
+def count_beeper():
+    i=0
+    while next_to_a_beeper():
+        pick_beeper()
+        i = i+1
+    repeat(put_beeper, i)
+    return i
+
+a = count_beeper()*10
+move()
+a += count_beeper()
+turn_left()
+move()
+turn_left()
+b = count_beeper()*10
+move()
+b += count_beeper()
+repeat(move, 2)
+turn_left()
+repeat(move, 2)
+turn_left()
+
+a *= b
+
+repeat(put_beeper, a/1000)
+move()
+repeat(put_beeper, (a%1000)/10)
+move()
+repeat(put_beeper, (a%100)/10)
+move()
+repeat(put_beeper, a%10)
+move()
+turn_off()

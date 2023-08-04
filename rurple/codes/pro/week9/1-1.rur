@@ -1,0 +1,11 @@
+def clean_wall():
+    while front_is_clear():
+        move()
+        if next_to_a_beeper():
+            pick_beeper()
+        turn_left()
+
+for i in range(1, 4):
+    clean_wall()
+
+turn_off()

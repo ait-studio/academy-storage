@@ -1,0 +1,22 @@
+position = 0
+
+def jump():
+    turn_left()
+    move()
+    move()
+    repeat(turn_left, 3)
+    move()
+    repeat(turn_left, 3)
+    move()
+    move()
+    turn_left()
+    move()
+
+while position < 15:
+    if front_is_clear():
+        move()
+    if not front_is_clear():
+        jump()
+    position = position + 1
+
+turn_off()

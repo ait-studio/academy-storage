@@ -1,0 +1,10 @@
+while not next_to_a_beeper():
+    if left_is_clear():
+        turn_left()
+        move()
+    else:
+        if not front_is_clear():
+            move()
+        else:
+            repeat(turn_left,3)
+turn_off()

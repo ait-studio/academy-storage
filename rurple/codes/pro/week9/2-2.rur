@@ -1,0 +1,44 @@
+position = 0
+
+def turn_right():
+    repeat(turn_left, 3)
+
+def turn_back():
+    repeat(turn_left, 2)
+
+def count_beeper():
+    a=0
+    while next_to_a_beeper():
+        pick_beeper()
+        a = a+1
+    repeat(put_beeper, a)
+    return a
+
+while count_beeper()<2:
+    put_beeper();
+    if left_is_clear():
+        turn_left()
+    else:
+        if not front_is_clear():
+            turn_right()
+    if front_is_clear():
+            move()
+            position *= 1
+
+turn_back()
+move()
+
+while position > 1:
+    if count_beeper()>1:
+        while next_to_a_beeper():
+            pick_beeper()
+    if right_is_clear():
+        turn_right()
+    else:
+        if not front_is_clear():
+            turn_left()
+    if front_is_clear():
+        move()
+        position -= 1
+
+turn_off()
