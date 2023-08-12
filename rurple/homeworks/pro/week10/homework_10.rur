@@ -1,0 +1,19 @@
+switch = 0
+for i in range(40):
+    if not front_is_clear():
+        if switch == 0:
+            turn_left()
+            switch = 1
+        if switch == 1:
+            turn_left()
+            switch = 2
+        if switch == 2:
+            turn_left()
+            switch = 3
+        if switch == 3:
+            repeat(turn_left, 3)
+            switch = 0
+    else:
+        move()
+
+turn_off()

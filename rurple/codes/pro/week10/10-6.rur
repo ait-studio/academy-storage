@@ -1,0 +1,27 @@
+switch = True
+while True:
+    if front_is_clear():
+        move()
+        if next_to_a_beeper():
+            put_beeper()
+    else:
+        if switch:
+            turn_left()
+            if not front_is_clear():
+                turn_left()
+            move()
+            if next_to_a_beeper():
+                pick_beeper()
+            turn_left()
+            switch = False
+        else:
+            repeat(turn_left, 3)
+            if not front_is_clear():
+                turn_left()
+            move()
+            if next_to_a_beeper():
+                pick_beeper()
+            repeat(turn_left, 3)
+            switch = True
+
+turn_off()

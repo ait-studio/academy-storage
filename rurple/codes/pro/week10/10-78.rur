@@ -1,0 +1,22 @@
+switch = True
+for i in range(9):
+    for j in range(i):
+        move()
+    for j in range(18-i*2):
+        put_beeper()
+        if front_is_clear():
+            move()
+    for j in range(i):
+        move()
+    if switch:
+        turn_left()
+        move()
+        turn_left()
+        switch = True
+    else:
+        repeat(turn_left, 3)
+        move()
+        repeat(turn_left, 3)
+        switch = False
+
+turn_off()
