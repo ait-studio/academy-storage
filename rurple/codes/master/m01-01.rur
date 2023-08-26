@@ -1,0 +1,8 @@
+put_beeper()
+move()
+while not next_to_a_beeper():
+    if front_is_clear():
+        move()
+    else:
+        turn_left()
+turn_off()
