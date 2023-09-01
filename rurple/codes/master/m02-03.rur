@@ -67,18 +67,31 @@ def check_result():
 ## Start of editable
 
 def main():
-    start()
-    
-    go_left()
-    ##
-    change_to_1_beeper()
-    ##
-    go_right()
-    go_right()
-    go_right()
-    ##
-    change_to_1_beeper()
-    ##
+    start()
+    
+    def f1():
+        if count_beepers() == 2:
+            repeat(go_right, 2)
+        else:
+            go_left()
+            ## Execute f1, f2, or f3
+            f1()
+            ##
+    
+    def f2():
+        if count_beepers() == 2:
+            repeat(go_right, 3)
+        else:
+            f1()
+    
+    def f3():
+        if count_beepers() == 2:
+            change_to_1_beeper()
+            repeat(go_right, 3)
+        else:
+            f2()
+    
+    f3()
     
     check_result()
 
