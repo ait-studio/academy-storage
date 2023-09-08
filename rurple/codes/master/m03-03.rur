@@ -1,0 +1,103 @@
+def turn_right():
+    repeat(turn_left, 3)
+
+def start():
+    move()
+
+def go_left():
+    turn_left()
+    move()
+    turn_right()
+
+def go_right():
+    turn_right()
+    move()
+    turn_left()
+
+def get_all_beepers():
+    while next_to_a_beeper():
+        pick_beeper()
+
+def change_to_1_beeper():
+    get_all_beepers()
+    put_beeper()
+
+def change_to_2_beepers():
+    get_all_beepers()
+    repeat(put_beeper, 2)
+    
+def go_up():
+    move()
+
+def go_down():
+    repeat(turn_left, 2)
+    move()
+    repeat(turn_left, 2)
+
+def count_beepers():
+    count = 0
+    while next_to_a_beeper():
+        pick_beeper()
+        count += 1
+    for i in range(count):
+        put_beeper()
+    return count
+
+def check():
+    go_up()
+    answer = count_beepers()
+    go_down()
+    count = count_beepers()
+    
+    return answer == count
+
+def check_result():
+    while left_is_clear():
+        go_left()
+    while True:
+        isContinue = check()
+        if not isContinue:
+            while front_is_clear():
+                move()
+            move()
+        if right_is_clear():
+            go_right()
+        else:
+            break
+## Start of editable
+
+def main():
+    start()
+    
+    go_left()
+    go_left()
+    
+    while True:
+        ##
+        if count_beepers() == 1:
+        ##
+            ##
+            change_to_1_beeper()
+            ##
+            
+            ##
+            if count_beepers() == 1:
+            ##
+                print("")
+            else:
+                break
+        else:
+            ##
+            change_to_1_beeper()
+            ##
+        go_right()
+        
+        if count_beepers() == 0:
+            break
+    
+    check_result()
+
+## End of editable
+
+main()
+turn_off()
