@@ -1,0 +1,29 @@
+def count_beepers():
+    count = 0
+    while next_to_a_beeper():
+        pick_beeper()
+        count += 1
+    for i in range(count):
+        put_beeper()
+    return count
+
+def go_left():
+    repeat(turn_left, 2)
+    move()
+    repeat(turn_left, 2)
+
+def factorial(xPosition):
+    curBeepers = count_beepers()
+    if curBeepers == 0:
+        go_left()
+        prev = factorial(xPosition - 1)
+        move()
+        
+        repeat(put_beeper, prev * xPosition)
+        return prev * xPosition
+    else:
+        return curBeepers
+
+xPosition = 6
+factorial(xPosition)
+turn_off()
