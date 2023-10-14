@@ -1,0 +1,50 @@
+def turn_right():
+    repeat(turn_left, 3)
+
+def pop():
+    turn_right()
+    
+    depth = 0
+    while not on_beeper():
+        move()
+        depth += 1
+    
+    beepers = 0
+    while on_beeper():
+        pick_beeper()
+        beepers += 1
+    
+    repeat(turn_left, 2)
+    repeat(move, depth)
+    turn_right()
+    
+    return beepers
+
+def push(beepers):
+    turn_right()
+    
+    depth = 0
+    while not on_beeper() and front_is_clear():
+        move()
+        depth += 1
+    if on_beeper():
+        repeat(turn_left, 2)
+        move()
+        depth -= 1
+    else:
+        repeat(turn_left, 2)
+    
+    repeat(put_beeper, beepers)
+    repeat(move, depth)
+    
+    turn_left()
+    repeat(move, 3)
+    repeat(turn_left, 2)
+
+def migrate_data():
+    beepers = pop()
+    repeat(move, 3)
+    push(beepers)
+
+migrate_data()
+turn_off()

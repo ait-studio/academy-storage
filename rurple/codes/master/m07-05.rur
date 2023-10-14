@@ -1,0 +1,54 @@
+def turn_right():
+    repeat(turn_left, 3)
+
+def insert(beepers):
+    repeat(move, 12)
+    turn_left()
+    move()
+    turn_left()
+    
+    depth = 0
+    while not on_beeper():
+        move()
+        depth += 1
+    repeat(turn_left, 2)
+    move()
+    depth -= 1
+    
+    repeat(put_beeper, beepers)
+    
+    repeat(turn_left, 2)
+    repeat(move, 12 - depth)
+    turn_left()
+    move()
+    turn_left()
+
+def delete():
+    turn_left()
+    move()
+    turn_right()
+    
+    depth = 0
+    while not on_beeper():
+        move()
+        depth += 1
+    
+    while on_beeper():
+        pick_beeper()
+    
+    repeat(turn_left, 2)
+    repeat(move, depth)
+    turn_left()
+    move()
+    turn_left()
+
+insert(4)
+delete()
+insert(5)
+insert(6)
+delete()
+insert(10)
+delete()
+delete()
+
+turn_off()
