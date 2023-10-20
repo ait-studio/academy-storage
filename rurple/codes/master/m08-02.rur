@@ -1,0 +1,75 @@
+minX = 1
+maxX = 15
+midX = -1
+
+minValue = -1
+maxValue = -1
+midValue = -1
+
+xPosition = 1
+targetValue = 7
+targetIdx = -1
+
+def count_beepers():
+    beepers = 0
+    while on_beeper():
+        pick_beeper()
+        beepers += 1
+    repeat(put_beeper, beepers)
+    return beepers
+
+def check():
+    turn_left()
+    move()
+    beepers = count_beepers()
+    repeat(turn_left, 2)
+    move()
+    turn_left()
+    
+    return beepers
+
+def keep_go_left():
+    global xPosition, minX
+    repeat(turn_left, 2)
+    
+    while xPosition > minX:
+        move()
+        xPosition -= 1
+    
+    repeat(turn_left, 2)
+
+def keep_go_right():
+    global xPosition, maxX
+    
+    while xPosition < maxX:
+        move()
+        xPosition += 1
+
+while True:
+    keep_go_left()
+    minValue = check()
+    
+    keep_go_right()
+    maxValue = check()
+    
+    midX = (minX + maxX) / 2
+    
+    repeat(turn_left, 2)
+    while xPosition > midX:
+        move()
+        xPosition -= 1
+    repeat(turn_left, 2)
+    
+    midX = xPosition
+    midValue = check()
+    
+    if targetValue == midValue:
+        targetIdx = midX
+        break
+    elif targetValue > midValue:
+        minX = midX
+    else:
+        maxX = midX
+
+print(str(targetValue) + " is in " + str(targetIdx))
+turn_off()

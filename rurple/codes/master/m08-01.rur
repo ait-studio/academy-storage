@@ -1,0 +1,31 @@
+index = -1
+target = 3
+
+def count_beepers():
+    beepers = 0
+    while on_beeper():
+        pick_beeper()
+        beepers += 1
+    repeat(put_beeper, beepers)
+    return beepers
+
+def s_check():
+    global target
+    # Moving code
+    value = # What's in here?
+    
+    if target == value:
+        # return to base
+        return # Return what?
+    else:
+        # return to base, and moving
+        return # Return what?
+
+while True:
+    index = s_check()
+    if index == -1:
+        continue
+    else:
+        break
+
+print(str(target)+" in "+str(index))
