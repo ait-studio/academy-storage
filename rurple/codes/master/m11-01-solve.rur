@@ -1,0 +1,126 @@
+xPosition = 0
+yPosition = 0
+
+map = [
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0]
+]
+
+def turn_right():
+    repeat(turn_left, 3)
+
+def count_beepers():
+    beepers = 0
+    while on_beeper():
+        pick_beeper()
+        beepers += 1
+    repeat(put_beeper, beepers)
+    return beepers
+
+### Here
+while True:
+    curBeeper = count_beepers()
+    map[yPosition][xPosition] = curBeeper
+    
+    if xPosition < 8:
+        move()
+        xPosition += 1
+    elif yPosition < 8:
+        repeat(turn_left, 2)
+        repeat(move, 8)
+        xPosition = 0
+        
+        turn_left()
+        move()
+        turn_left()
+        yPosition += 1
+    else:
+        break
+
+for i in range(9):
+    print(map[i])
+
+turn_left()
+repeat(move, 8)
+turn_left()
+repeat(move, 8)
+repeat(turn_left, 2)
+xPosition = 0
+yPosition = 0
+
+
+## Sudoku solver
+def find_empty_cell(map):
+    for row in range(9):
+        for col in range(9):
+            if map[row][col] == 0:
+                return row, col
+    return None
+
+def is_valid_number(map, row, col, num):
+    if num in map[row]:
+        return False
+    if num in [map[i][col] for i in range(9)]:
+        return False
+    
+    row_origin, col_origin = 3 * (row // 3), 3 * (col // 3)
+    for i in range(row_origin, row_origin+3):
+        for j in range(col_origin, col_origin+3):
+            if map[i][j] == num:
+                return False
+    return True
+
+def set_number(map, row, col, num):
+    map[row][col] = num
+
+def clear_number(map, row, col):
+    map[row][col] = 0
+
+def solve_sudoku(map):
+    empty_cell = find_empty_cell(map)
+    if not empty_cell:
+        return True
+    
+    row, col = empty_cell
+    for num in range(1, 10):
+        print(row, col, num)
+        if is_valid_number(map, row, col, num):
+            set_number(map, row, col, num)
+            if solve_sudoku(map):
+                return True
+            clear_number(map, row, col)
+    return False
+
+solve_sudoku(map)
+
+for row in map:
+    print(row)
+
+while True:
+    if on_beeper():
+        if xPosition < 8:
+            move()
+            xPosition += 1
+        elif yPosition < 9:
+            repeat(turn_left, 2)
+            repeat(move, 8)
+            xPosition = 0
+            
+            turn_left()
+            move()
+            turn_left()
+            yPosition += 1
+        else:
+            break
+    else:
+        repeat(put_beeper, map[yPosition][xPosition])
+### End
+
+turn_off()
